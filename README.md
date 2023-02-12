@@ -4,7 +4,14 @@
 <br />
 
 ## **Welcome to REPO!**
-TODO
+dev console
+https://discord.com/developers/applications/1071317419039141929/bot
+
+old python bot (/comparison/)
+https://github.com/anthonybench/cs594-project/tree/main/python-functions/comparison
+
+python api
+https://discordpy.readthedocs.io/en/stable/api.html
 
 <br />
 
@@ -24,14 +31,27 @@ TODO
 ## **Get Started 🚀**
 <hr>
 
-TODO
+python3 -m pip install -U discord.py
+
+https://github.com/Rapptz/discord.py/tree/v2.1.1/examples
+https://openweathermap.org/price#weather
+https://home.openweathermap.org/api_keys
 
 <br />
 
 ## **Usage ⚙**
 <hr>
 
-TODO
+TODO: scp to local server, run app
+```yaml
+app_id: 1071317419039141929
+public_key: 97b4bd5e22d9f4c1f4a2963616d8785e883cccb886d3184d34ba9dbcabb68e84
+perms_int: 139587292160
+token: MTA3MTMxNzQxOTAzOTE0MTkyOQ.GGUXx2.gzPC1MDBSp-FVPOGbDfv3kB4UPOv524oV_9hRo
+client_id: 1071317419039141929
+client_secret: Bc9Mlp41mGZPAmZSYL7-T3vzO9B0wGgZ
+guild_id: 1070201664415473755
+```
 
 <br />
 

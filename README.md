@@ -44,13 +44,13 @@ https://home.openweathermap.org/api_keys
 
 TODO: scp to local server, run app
 ```yaml
-app_id: 1071317419039141929
-public_key: 97b4bd5e22d9f4c1f4a2963616d8785e883cccb886d3184d34ba9dbcabb68e84
-perms_int: 139587292160
-token: MTA3MTMxNzQxOTAzOTE0MTkyOQ.GGUXx2.gzPC1MDBSp-FVPOGbDfv3kB4UPOv524oV_9hRo
-client_id: 1071317419039141929
-client_secret: Bc9Mlp41mGZPAmZSYL7-T3vzO9B0wGgZ
-guild_id: 1070201664415473755
+app_id: # dev console
+public_key: # dev console
+perms_int: # dev console
+token: # dev console
+client_id: # dev console
+client_secret: # dev console
+guild_id: # right click server in discord
 ```
 
 <br />

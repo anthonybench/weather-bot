@@ -1,17 +1,12 @@
-# **TITLE**
-*SUB_TITLE*
+# **WeatherBot**
+*A Discord application to fetch OpenWeather data.*
 
 <br />
 
-## **Welcome to REPO!**
-dev console
-https://discord.com/developers/applications/1071317419039141929/bot
+## **Welcome to WeatherBot!**
+A succinctly written discord application to satisfy in-chat weather reports and forecasts.
 
-old python bot (/comparison/)
-https://github.com/anthonybench/cs594-project/tree/main/python-functions/comparison
-
-python api
-https://discordpy.readthedocs.io/en/stable/api.html
+Clone it, supply credentials, run it!
 
 <br />
 
@@ -31,18 +26,12 @@ https://discordpy.readthedocs.io/en/stable/api.html
 ## **Get Started 🚀**
 <hr>
 
-python3 -m pip install -U discord.py
+Fetch dependencies:
+```sh
+pip install -r requirements.txt
+```
 
-https://github.com/Rapptz/discord.py/tree/v2.1.1/examples
-https://openweathermap.org/price#weather
-https://home.openweathermap.org/api_keys
-
-<br />
-
-## **Usage ⚙**
-<hr>
-
-TODO: scp to local server, run app
+Create `creds.yml`  in the repo's root, and populate as follows:
 ```yaml
 app_id: # dev console
 public_key: # dev console
@@ -53,28 +42,50 @@ client_secret: # dev console
 guild_id: # right click server in discord
 ```
 
+You can ensure your bot token is active or generate a new one [here](https://discord.com/developers/applications/1071317419039141929/bot).
+
+See the [Discord.py API docs](https://discordpy.readthedocs.io/en/stable/api.html) to implement new features.
+
+<br />
+
+## **Usage ⚙**
+<hr>
+
+Log in bot indefinitely:
+```sh
+./main.py
+```
+
+Info message:
+```sh
+./main.py [-h|--help]
+```
+
 <br />
 
 ## **Technologies 🧰**
 <hr>
 
-  - [TODO](https://google.com)
-  - [TODO](https://google.com)
-  - [TODO](https://google.com)
+  - [Discord.py](https://google.com)
+  - [PyYaml](https://google.com)
 
 <br />
 
 ## **Contribute 🤝**
 <hr>
 
-TODO
+If you think you have a cool weather data idea, submit a PR 🤓
 
 <br />
 
 ## **Acknowledgements 💙**
 <hr>
 
-TODO
+Great references:
+- [Discord.py](https://google.com)
+- [Bot Examples](https://github.com/Rapptz/discord.py/tree/v2.1.1/examples)
+- [OpenWeather Endpoints, grouped by price](https://openweathermap.org/price#weather)
+- [OpenWeather Keys](https://home.openweathermap.org/api_keys)
 
 <br />
 
@@ -84,10 +95,10 @@ TODO
 <img align="right" alt="example image tag" src="https://i.imgur.com/jtNwEWu.png" width="200" />
 
 <!-- badge cluster -->
-TODO [SHIELD](https://shields.io/)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/anthonybench/weather-bot) ![PyPI](https://img.shields.io/pypi/v/discord.py) ![GitHub top language](https://img.shields.io/github/languages/top/anthonybench/weather-bot)
 <!-- / -->
 
-See [License](TODO) for the full license text.
+See [License](LICENSE) for the full license text.
 
 This repository was authored by *Isaac Yep*.
 

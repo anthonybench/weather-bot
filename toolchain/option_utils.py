@@ -15,14 +15,12 @@ Prints usage message'''
     errorNotice += '\n\n'
   print(f"""
 {errorNotice}
-<USAGE_BLURB_HERE>
+Simply run main.py to log the bot in indefinitely.
 --------------
 Usage:
-  ./FILE.py <ARGS>
-Example:
-  ./FILE.py <ARGS>
+  ./main.py
 Info:
-  ./FILE.py [-h|--help]
+  ./main.py [-h|--help]
 --------------
 """)
 

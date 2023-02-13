@@ -6,7 +6,8 @@
 #║   ▶ Isaac Yep
 #╚══════════════════════════════════
 mainDocString = '''
-<HIGH_LEVEL_BLURB>
+This program logs in as a discord bot and responds to pre-defined weather data requests ('slash commands', or most often just 'commands').
+Requires 
 '''
 
 #───Dependencies───────────────
@@ -106,6 +107,7 @@ def main():
 
       @client.tree.command()
       async def airquality(interaction: discord.Interaction):
+        """Gets current air quality metrics."""
         message = airQualityLogic(api_key, longitude, latitude)
         await interaction.response.send_message(message)
       #═════════════════════════════════❗

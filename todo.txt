@@ -1,5 +1,2 @@
-- air quality
-- populate readme
-- populate mainDocString and usageMessage()
-- port to pi
-- discord bot template
+- 
+- 

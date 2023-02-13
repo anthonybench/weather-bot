@@ -40,6 +40,7 @@ token: # dev console
 client_id: # dev console
 client_secret: # dev console
 guild_id: # right click server in discord
+open_weather_key: # open-weather api key
 ```
 
 You can ensure your bot token is active or generate a new one [here](https://discord.com/developers/applications/1071317419039141929/bot).

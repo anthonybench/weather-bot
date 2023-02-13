@@ -1,6 +1,5 @@
-- break slash command functions out to their own files
+- air quality
 - populate readme
-- populate requirements.txt
 - populate mainDocString and usageMessage()
 - port to pi
 - discord bot template

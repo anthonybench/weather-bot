@@ -56,16 +56,17 @@ def forecastLogic(api_key: str, longitude: float, latitude: float) -> str:
   return message
 
 
-def airQuality() -> str:
+def airQualityLogic(api_key: str, longitude: float, latitude: float) -> str:
   """takes open-weather api key and coordinates,fetches air quality data from open-weather, returns formatted message"""
+  call = f'http://api.openweathermap.org/data/2.5/air_pollution?lat={latitude}&lon={longitude}&appid={api_key}'
+  r = requests.get(call)
+  j = r.json()
   aqi_text = [None, 'Good', 'Fair', 'Moderate', 'Poor', 'Very Poor']
-# keys {
-#   'co', 'nh3', 'no', 'no2', '03', 'pm10', 'pm2_5', 'so2'
-# } :: float
-particulates = j['list'][0]['components']
-aqi = j['list'][0]['main']['aqi']
-
-# pprint(particulates, indent=1)
-message = f'**{datetime.now().strftime("%A, %B %-d")}**\nAir Quality Index: `{aqi} ("{aqi_text[aqi]}"))`\n'
-for k,v in particulates.items():
-  message += f'> {k}: `{v}`\n'`
+  particulate_labels = {'co':'CO', 'nh3':'NH3', 'no2':'NO2', 'o3':'O3', 'pm10':'Course Particulates', 'pm2_5':'Fine Particulates', 'so2':'SO2', 'no':'NO'}
+  # 'co', 'nh3', 'no', 'no2', '03', 'pm10', 'pm2_5', 'so2'
+  particulates = { particulate_labels[k] : v for k,v in j['list'][0]['components'].items()}
+  aqi = j['list'][0]['main']['aqi']
+  message = f'**{datetime.now().strftime("%A, %B %-d")}**\nAir Quality Index: `{aqi} ({aqi_text[aqi]})`\n'
+  for k,v in particulates.items():
+    message += f'> {k}: `{v}`\n'
+  return message

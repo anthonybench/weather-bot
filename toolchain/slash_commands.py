@@ -32,7 +32,7 @@ def forecastLogic(api_key: str, longitude: float, latitude: float) -> str:
   filtered_data = { datetime.fromtimestamp(i['dt']) : [i['weather'][0]['description'], i['main']['temp_max'], i['main']['temp_min'], i['wind']['speed'], i['main']['humidity']] for i in j['list'] if datetime.now().strftime('%A') != datetime.fromtimestamp(i['dt']).strftime('%A') }
   # {
   #   'day_name' : [
-  #     [descriptions], [highs(degC)], [lows(degC)], [wind_speed], [average_humidity]
+  #     [descriptions], [highs(degC)], [lows(degC)], [wind_speed(m/s)], [average_humidity(%)]
   #   ]
   # } # 
   grouped_data = {}
@@ -46,7 +46,7 @@ def forecastLogic(api_key: str, longitude: float, latitude: float) -> str:
     ]
   # {
   #   'day_name' : [
-  #     description_mode, average_high, average_low, average_wind_speed, average_humidity
+  #     description_mode, average_high(degC), average_low(degC), average_wind_speed(m/s), average_humidity(%)
   #   ]
   # }
   transformed_data = { k : [mode(v[0]), round(mean(v[1]),1), round(mean(v[2]),1), round(mean(v[3]),1), round(mean(v[4]),1)] for k,v in grouped_data.items() }
@@ -63,7 +63,6 @@ def airQualityLogic(api_key: str, longitude: float, latitude: float) -> str:
   j = r.json()
   aqi_text = [None, 'Good', 'Fair', 'Moderate', 'Poor', 'Very Poor']
   particulate_labels = {'co':'CO', 'nh3':'NH3', 'no2':'NO2', 'o3':'O3', 'pm10':'Course Particulates', 'pm2_5':'Fine Particulates', 'so2':'SO2', 'no':'NO'}
-  # 'co', 'nh3', 'no', 'no2', '03', 'pm10', 'pm2_5', 'so2'
   particulates = { particulate_labels[k] : v for k,v in j['list'][0]['components'].items()}
   aqi = j['list'][0]['main']['aqi']
   message = f'**{datetime.now().strftime("%A, %B %-d")}**\nAir Quality Index: `{aqi} ({aqi_text[aqi]})`\n'

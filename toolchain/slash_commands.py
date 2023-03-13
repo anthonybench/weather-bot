@@ -1,21 +1,34 @@
 import requests
 from datetime import datetime
 from statistics import mode, mean
+from typing import List
+
+
+# utility: sort day-names
+def sort_days(days: List[str], today: str) -> List[str]:
+  """takes list of day-names and current day, returns days in order given current day"""
+  next_day = {'Monday':'Tuesday','Tuesday':'Wednesday','Wednesday':'Thursday','Thursday':'Friday','Friday':'Saturday','Saturday':'Sunday','Sunday':'Monday'}
+  payload = []
+  ptr     = next_day[today]
+  for i in range(len(days)):
+    payload.append(ptr)
+    ptr = next_day[ptr]
+  return payload
 
 
 def currentLogic(api_key: str, longitude: float, latitude: float) -> str:
-    """takes open-weather api key and coordinates, fetches current weather data from open-weather, returns formatted message"""
-    call = f'https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={api_key}'
-    r = requests.get(call)
-    j = r.json()
-    weather_description = j['weather'][0]['description']
-    date                = datetime.now()
-    temp                = round(j['main']['temp'] - 273.15, 1) # degC
-    high                = round(j['main']['temp_max'] - 273.15, 1) # degC
-    low                 = round(j['main']['temp_min'] - 273.15, 1) # degC
-    wind_speed          = j['wind']['speed'] # m/s
-    humidity            = j['main']['humidity'] # %
-    return f'''**{date.strftime("%A, %B %-d")}**\n"*{weather_description}*"\n> 🌡️ Temp: `{temp} °C`"\n>   ☝ High: `{high} °C`\n>   👇 Low: `{low} °C`\n> 🌬️ Wind: `{wind_speed} m/s`\n> 💧 Humidity: `{humidity} %`
+  """takes open-weather api key and coordinates, fetches current weather data from open-weather, returns formatted message"""
+  call = f'https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={api_key}'
+  r = requests.get(call)
+  j = r.json()
+  weather_description = j['weather'][0]['description']
+  date                = datetime.now()
+  temp                = round(j['main']['temp'] - 273.15, 1) # degC
+  high                = round(j['main']['temp_max'] - 273.15, 1) # degC
+  low                 = round(j['main']['temp_min'] - 273.15, 1) # degC
+  wind_speed          = j['wind']['speed'] # m/s
+  humidity            = j['main']['humidity'] # %
+  return f'''**{date.strftime("%A, %B %-d")}**\n"*{weather_description}*"\n> 🌡️ Temp: `{temp} °C`"\n>   ☝ High: `{high} °C`\n>   👇 Low: `{low} °C`\n> 🌬️ Wind: `{wind_speed} m/s`\n> 💧 Humidity: `{humidity} %`
 '''
 
 
@@ -51,8 +64,10 @@ def forecastLogic(api_key: str, longitude: float, latitude: float) -> str:
   # }
   transformed_data = { k : [mode(v[0]), round(mean(v[1]),1), round(mean(v[2]),1), round(mean(v[3]),1), round(mean(v[4]),1)] for k,v in grouped_data.items() }
   message = ''
-  for k,v in transformed_data.items():
-    message += f'**{k}**\n"*{v[0]}*"\n> ☝ Average High: `{v[1]} °C`\n> 👇 Average Low: `{v[2]} °C`\n> 🌬️ Average Wind: `{v[3]} m/s`\n> 💧 Average Humidity: `{v[4]} %`\n\n'
+  # for k,v in transformed_data.items():
+  #   message += f'**{k}**\n"*{v[0]}*"\n> ☝ Average High: `{v[1]} °C`\n> 👇 Average Low: `{v[2]} °C`\n> 🌬️ Average Wind: `{v[3]} m/s`\n> 💧 Average Humidity: `{v[4]} %`\n\n'
+  for day_name in sort_days(list(transformed_data.keys()), datetime.now().strftime('%A')):
+    message += f'**{day_name}**\n"*{transformed_data[day_name][0]}*"\n> ☝ Average High: `{transformed_data[day_name][1]} °C`\n> 👇 Average Low: `{transformed_data[day_name][2]} °C`\n> 🌬️ Average Wind: `{transformed_data[day_name][3]} m/s`\n> 💧 Average Humidity: `{transformed_data[day_name][4]} %`\n\n'
   return message
 
 

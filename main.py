@@ -8,7 +8,7 @@ Usage:
 
 References:
   https://typer.tiangolo.com/
-  TODO - discord docs link
+  https://discordpy.readthedocs.io/en/stable/api.html
 '''
 
 # stdlib

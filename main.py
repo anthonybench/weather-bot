@@ -12,13 +12,7 @@ Requires
 
 #───Dependencies───────────────
 # stdlib
-from sys import argv, exit, getsizeof
-from typing import List
-from subprocess import run
-from typing import Optional
-import requests
-import json
-from datetime import datetime
+from sys import argv, exit
 # custom modules
 from toolchain.option_utils import usageMessage, checkListOverlap, verifyOption, getOptionVal, stripOptionVals
 from toolchain.slash_commands import currentLogic, forecastLogic, airQualityLogic

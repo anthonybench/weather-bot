@@ -1,25 +1,23 @@
-import requests
+
+# stdlib
 from datetime import datetime
 from statistics import mode, mean
-from typing import List
+from sys import exit
+# custom modules
+from utils import sort_days
+# 3rd party
+try:
+  import requests
+  from yaml import safe_load, YAMLError
+except ModuleNotFoundError as e:
+  print("Error: Missing one or more 3rd-party packages (pip install).")
+  exit(1)
 
 
-# utility: sort day-names
-def sort_days(days: List[str], today: str) -> List[str]:
-  """takes list of day-names and current day, returns days in order given current day"""
+#───Commands─────────────────
+def current_logic() -> str:
+  '''takes open-weather api key and coordinates, fetches current weather data from open-weather, returns formatted message'''
 
-  next_day = {'Monday':'Tuesday','Tuesday':'Wednesday','Wednesday':'Thursday','Thursday':'Friday','Friday':'Saturday','Saturday':'Sunday','Sunday':'Monday'}
-  payload = []
-  ptr     = next_day[today]
-  for i in range(len(days)):
-    payload.append(ptr)
-    ptr = next_day[ptr]
-  return payload
-
-
-def currentLogic(api_key: str, longitude: float, latitude: float) -> str:
-  """takes open-weather api key and coordinates, fetches current weather data from open-weather, returns formatted message"""
-  
   call = f'https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={api_key}'
   r = requests.get(call)
   j = r.json()
@@ -30,12 +28,12 @@ def currentLogic(api_key: str, longitude: float, latitude: float) -> str:
   low                 = round(j['main']['temp_min'] - 273.15, 1) # degC
   wind_speed          = j['wind']['speed'] # m/s
   humidity            = j['main']['humidity'] # %
-  return f'''**{date.strftime("%A, %B %-d")}**\n"*{weather_description}*"\n> 🌡️ Temp: `{temp} °C`"\n>   ☝ High: `{high} °C`\n>   👇 Low: `{low} °C`\n> 🌬️ Wind: `{wind_speed} m/s`\n> 💧 Humidity: `{humidity} %`
-'''
+  return f'''**{date.strftime("%A, %B %-d")}**\n"*{weather_description}*"\n> 🌡️ Temp: `{temp} °C`"\n>   ☝ High: `{high} °C`\n>   👇 Low: `{low} °C`\n> 🌬️ Wind: `{wind_speed} m/s`\n> 💧 Humidity: `{humidity} %`'''
 
 
-def forecastLogic(api_key: str, longitude: float, latitude: float) -> str:
-  """takes open-weather api key and coordinates,fetches 5-day 3-hour forecast data from open-weather, returns formatted message"""
+def forecast_logic() -> str:
+  '''takes open-weather api key and coordinates,fetches 5-day 3-hour forecast data from open-weather, returns formatted message'''
+
   call = f'https://api.openweathermap.org/data/2.5/forecast?lat={latitude}&lon={longitude}&appid={api_key}'
   r = requests.get(call)
   j = r.json()
@@ -73,8 +71,9 @@ def forecastLogic(api_key: str, longitude: float, latitude: float) -> str:
   return message
 
 
-def airQualityLogic(api_key: str, longitude: float, latitude: float) -> str:
-  """takes open-weather api key and coordinates,fetches air quality data from open-weather, returns formatted message"""
+def air_quality_logic() -> str:
+  '''takes open-weather api key and coordinates,fetches air quality data from open-weather, returns formatted message'''
+
   call = f'http://api.openweathermap.org/data/2.5/air_pollution?lat={latitude}&lon={longitude}&appid={api_key}'
   r = requests.get(call)
   j = r.json()

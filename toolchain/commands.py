@@ -15,7 +15,7 @@ except ModuleNotFoundError as e:
 
 
 #───Commands─────────────────
-def current_logic() -> str:
+def current_logic(api_key: str, longitude: float, latitude: float) -> str:
   '''takes open-weather api key and coordinates, fetches current weather data from open-weather, returns formatted message'''
 
   call = f'https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={api_key}'
@@ -31,7 +31,7 @@ def current_logic() -> str:
   return f'''**{date.strftime("%A, %B %-d")}**\n"*{weather_description}*"\n> 🌡️ Temp: `{temp} °C`"\n>   ☝ High: `{high} °C`\n>   👇 Low: `{low} °C`\n> 🌬️ Wind: `{wind_speed} m/s`\n> 💧 Humidity: `{humidity} %`'''
 
 
-def forecast_logic() -> str:
+def forecast_logic(api_key: str, longitude: float, latitude: float) -> str:
   '''takes open-weather api key and coordinates,fetches 5-day 3-hour forecast data from open-weather, returns formatted message'''
 
   call = f'https://api.openweathermap.org/data/2.5/forecast?lat={latitude}&lon={longitude}&appid={api_key}'
@@ -71,7 +71,7 @@ def forecast_logic() -> str:
   return message
 
 
-def air_quality_logic() -> str:
+def air_quality_logic(api_key: str, longitude: float, latitude: float) -> str:
   '''takes open-weather api key and coordinates,fetches air quality data from open-weather, returns formatted message'''
 
   call = f'http://api.openweathermap.org/data/2.5/air_pollution?lat={latitude}&lon={longitude}&appid={api_key}'

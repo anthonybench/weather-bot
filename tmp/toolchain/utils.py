@@ -11,7 +11,8 @@ except ModuleNotFoundError as e:
 
 #───Utils────────────────────
 def sort_days(days: List[str], today: str) -> List[str]:
-  """takes list of day-names and current day, returns days in order given current day"""
+  '''takes list of day-names and current day, returns days in order given current day'''
+  
   next_day = {'Monday':'Tuesday','Tuesday':'Wednesday','Wednesday':'Thursday','Thursday':'Friday','Friday':'Saturday','Saturday':'Sunday','Sunday':'Monday'}
   payload = []
   ptr     = next_day[today]

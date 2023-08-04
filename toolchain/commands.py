@@ -3,7 +3,7 @@
 from datetime import datetime
 from statistics import mode, mean
 from sys import exit
-# custom modules
+# custom
 from toolchain.utils import sort_days
 # 3rd party
 try:

@@ -52,14 +52,26 @@ See the [Discord.py API docs](https://discordpy.readthedocs.io/en/stable/api.htm
 ## **Usage ⚙**
 <hr>
 
-Log in bot indefinitely:
+Run indefinitely:
 ```sh
 ./main.py
 ```
 
 Info message:
 ```sh
-./main.py [-h|--help]
+./main.py --help
+```
+
+Chat commands (presuming you name your application `WeatherBot`):
+```sh
+# get current climate conditions
+/WeatherBot current
+
+# get 5-day climate forecast
+/WeatherBot forecast
+
+# get current air quality metrics
+/WeatherBot airquality
 ```
 
 <br />
@@ -69,6 +81,7 @@ Info message:
 
   - [Discord.py](https://google.com)
   - [PyYaml](https://google.com)
+  - [Typer](https://typer.tiangolo.com/)
 
 <br />
 

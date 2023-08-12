@@ -30,7 +30,7 @@ Fetch dependencies:
 pip install -r requirements.txt
 ```
 
-Create `creds.yml`  in the repo's root, and populate as follows:
+Create `config.yml`  in the repo's root, and populate as follows:
 ```yaml
 # Discord
 app_id: # developer console

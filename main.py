@@ -41,8 +41,8 @@ with open('config.yml', 'r') as raw_config:
   client_id     = config['client_id']
   client_secret = config['client_secret']
   guild_id      = config['guild_id']
-  api_key       = config['open_weather_key']
   channel_scope = config['channel_scope']
+  api_key       = config['open_weather_key']
 latitude  = 45.6280
 longitude = -122.6739
 

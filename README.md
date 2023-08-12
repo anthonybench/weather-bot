@@ -32,14 +32,22 @@ pip install -r requirements.txt
 
 Create `creds.yml`  in the repo's root, and populate as follows:
 ```yaml
-app_id: # dev console
-public_key: # dev console
-perms_int: # dev console
-token: # dev console
-client_id: # dev console
-client_secret: # dev console
-guild_id: # right click server in discord
-open_weather_key: # open-weather api key
+# Discord
+app_id: # developer console
+public_key: # developer console
+perms_int: # developer console
+token: # developer console
+client_id: # developer console
+client_secret: # developer console
+guild_id: # server settings in discord
+#
+channel_scope:
+  - channel-name
+  - other-channel-name
+
+
+# OpenWeather
+open_weather_key: # openweather console
 ```
 
 You can ensure your bot token is active or generate a new one [here](https://discord.com/developers/applications/1071317419039141929/bot).

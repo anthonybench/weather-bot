@@ -28,20 +28,21 @@ except ModuleNotFoundError as e:
 
 #───Globals──────────────────
 app = typer.Typer()
-with open('creds.yml', 'r') as raw_config:
+with open('config.yml', 'r') as raw_config:
   try:
-    config_dict   = safe_load(raw_config)
+    config = safe_load(raw_config)
   except YAMLError as e:
     print("Error. YAML input invalid.\n{e}")
     exit(1)
-  app_id        = config_dict['app_id']
-  public_key    = config_dict['public_key']
-  perms_int     = config_dict['perms_int']
-  token         = config_dict['token']
-  client_id     = config_dict['client_id']
-  client_secret = config_dict['client_secret']
-  guild_id      = config_dict['guild_id']
-  api_key       = config_dict['open_weather_key']
+  app_id        = config['app_id']
+  public_key    = config['public_key']
+  perms_int     = config['perms_int']
+  token         = config['token']
+  client_id     = config['client_id']
+  client_secret = config['client_secret']
+  guild_id      = config['guild_id']
+  api_key       = config['open_weather_key']
+  channel_scope = config['channel_scope']
 latitude  = 45.6280
 longitude = -122.6739
 
@@ -52,9 +53,6 @@ def run() -> None:
   '''Weather Bot
 
   Runs Discord bot that fetches climate data from the OpenWeather API upon slash-command chat dictation.
-
-  ───Return\n
-  None
   '''
   ## Init
   guild = discord.Object(id=guild_id)
@@ -69,31 +67,56 @@ def run() -> None:
   intents = Intents(messages=True, guilds=True, members=True)
   client  = MyClient(intents=intents)
 
-
-  ## Commands
   @client.event
   async def on_ready():
     '''Print successful login'''
     print(f'Logged in as {client.user} (ID: {client.user.id})')
     print('──────')
+
+
+  ## Commands
+  #───
+  @client.tree.command()
+  async def help(interaction:Interaction):
+    '''Explain WeatherBot usage'''
+    if interaction.channel.name in channel_scope:
+      message = f'''/forecast :: *5 day forecast*
+/current :: *current climate conditions*
+/airquality :: *current air quality metrics*'''
+      await interaction.response.send_message(message)
+    else:
+      message = f'Sorry, i only respond in {", ".join(channel_scope)}'
+      await interaction.response.send_message(message, ephemeral=True)  
   #───
   @client.tree.command()
   async def current(interaction: discord.Interaction):
     '''Current weather conditions.'''
-    message = current_logic(api_key, longitude, latitude)
-    await interaction.response.send_message(message)
+    if interaction.channel.name in channel_scope:
+      message = current_logic(api_key, longitude, latitude)
+      await interaction.response.send_message(message)
+    else:
+      message = f'Sorry, i only respond in {", ".join(channel_scope)}'
+      await interaction.response.send_message(message, ephemeral=True)
   #───
   @client.tree.command()
   async def forecast(interaction: discord.Interaction):
     '''Seven day forecast.'''
-    message = forecast_logic(api_key, longitude, latitude)
-    await interaction.response.send_message(message)
+    if interaction.channel.name in channel_scope:
+      message = forecast_logic(api_key, longitude, latitude)
+      await interaction.response.send_message(message)
+    else:
+      message = f'Sorry, i only respond in {", ".join(channel_scope)}'
+      await interaction.response.send_message(message, ephemeral=True)
   #───
   @client.tree.command()
   async def airquality(interaction: discord.Interaction):
     '''Current air quality metrics'''
-    message = air_quality_logic(api_key, longitude, latitude)
-    await interaction.response.send_message(message)
+    if interaction.channel.name in channel_scope:
+      message = air_quality_logic(api_key, longitude, latitude)
+      await interaction.response.send_message(message)
+    else:
+      message = f'Sorry, i only respond in {", ".join(channel_scope)}'
+      await interaction.response.send_message(message, ephemeral=True)
   #───
 
 

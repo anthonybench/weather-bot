@@ -13,7 +13,6 @@ Clone it, supply credentials, run it!
 ### **Table of Contents** 📖
 <hr>
 
-  - [Welcome](#welcome-to-REPO)
   - [**Get Started**](#get-started-)
   - [Usage](#usage-)
   - [Technologies](#technologies-)
@@ -82,6 +81,7 @@ Chat commands (presuming you name your application `WeatherBot`):
   - [Discord.py](https://google.com)
   - [PyYaml](https://google.com)
   - [Typer](https://typer.tiangolo.com/)
+  - [OpenWeather](https://openweathermap.org/api)
 
 <br />
 
@@ -95,11 +95,7 @@ If you think you have a cool weather data idea, submit a PR 🤓
 ## **Acknowledgements 💙**
 <hr>
 
-Great references:
-- [Discord.py](https://google.com)
-- [Bot Examples](https://github.com/Rapptz/discord.py/tree/v2.1.1/examples)
-- [OpenWeather Endpoints, grouped by price](https://openweathermap.org/price#weather)
-- [OpenWeather Keys](https://home.openweathermap.org/api_keys)
+Thanks to Jean Choi, my partner, for being so supportive all the time.
 
 <br />
 

@@ -4,7 +4,7 @@ from datetime import datetime
 from statistics import mode, mean
 from sys import exit
 # custom
-from toolchain.utils import sort_days
+from toolchain.utils import *
 # 3rd party
 try:
   import requests

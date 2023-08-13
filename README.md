@@ -48,6 +48,8 @@ channel_scope:
 
 # OpenWeather
 open_weather_key: # openweather console
+latitude: # google maps
+longitude: # google maps
 ```
 
 You can ensure your bot token is active or generate a new one [here](https://discord.com/developers/applications/1071317419039141929/bot).

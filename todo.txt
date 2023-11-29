@@ -1,2 +1,1 @@
-- 
-- 
+- implement scheduling of the `/current` command in a given channel

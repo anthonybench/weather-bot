@@ -1,1 +1,2 @@
-- implement scheduling of the `/current` command in a given channel
+- implement scheduling of the `/current` & `/airquality` commands in a given channel
+- need units for air-quality output
